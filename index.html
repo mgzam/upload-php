@@ -20,15 +20,14 @@ function human_filesize($bytes, $decimals = 2) {
         $factor = floor((strlen($bytes) - 1) / 3);
         return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
 }                  
-                    // Ouverture du dossier "images" afin d'en extraire les noms des fichiers qu'il contient
-if($MyDirectory = opendir('./images') or die('Erreur'));{
+                    // Ouverture du dossier "/tmp" afin d'en extraire les noms des fichiers qu'il contient
+if($MyDirectory = opendir('/tmp') or die('Erreur'));{
         while(false !== ($file = readdir($MyDirectory))) {
         if($file != '.' && $file != '..' && $file != '') {
                      
-                    // 1ere colonne du tableau : Affiche les liens des fichiers contenus dans le dossier "images":
-echo '<tr><td><a href="./images/' . $file . '">' . $file . '</a></td>';
+echo '<tr><td><a href="/tmp/' . $file . '">' . $file . '</a></td>';
          
-        $fichier = './images/' . $file . ''; //astuce qui permet de redonner le chemin de chaque fichier donné par readdir()
+        $fichier = '/tmp/' . $file . ''; //astuce qui permet de redonner le chemin de chaque fichier donné par readdir()
 if (file_exists($fichier)) {
                     // 2eme colonne : Affiche la taille de chaque fichier:
 echo '<td>' .human_filesize(filesize($fichier)).'</td>';
