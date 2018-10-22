@@ -1,67 +1,22 @@
 <html>
 <head></head>
 <body>
-<table>	
-    <tr>
-         <td>
+
 <?php
-                // 1ere colone : Affiche les liens des fichiers contenus
-                // dans le dossier "images" , excepté favicon5.png
-          
-if($MyDirectory = opendir('/tmp') or die('Erreur'));{
-    while(false !== ($file = readdir($MyDirectory))) {
-        if($file != '.' && $file != '..' && $file != 'favicon5.ico') {
-echo '<a href="/tmp/' . $file . '">' . $file . '</a>';
-echo '<br />';
-echo '<br />';
-        }
+if($MyDirectory = opendir('/tmp') or die('Erreur'));
+{
+  while(false !== ($file = readdir($MyDirectory))) 
+  {
+    if($file != '.' && $file != '..' && $file != 'favicon5.ico') 
+    {
+      echo '<a href="/tmp/' . $file . '">' . $file . '</a>';
+      echo '<br />';
+      echo '<br />';
     }
+  }
 closedir($MyDirectory);
-  }
-?>
-        </td>
- 
-        <td>
-<?php
-                    // 2eme colonne: Affiche la taille de chaque fichier
- 
-function human_filesize($bytes, $decimals = 2) {
-    $size = array('B','kB','MB','GB','TB','PB','EB','ZB','YB');
-    $factor = floor((strlen($bytes) - 1) / 3);
-    return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$size[$factor];
 }
- if($MyDirectory = opendir('/tmp') or die('Erreur'));{
-    while(false !== ($file = readdir($MyDirectory))) {
-            if (file_exists($file)) {  
-echo human_filesize(filesize($file));
-echo '<br />';
-echo '<br />';               
-        }
-    }
- closedir($MyDirectory);
-  }
- ?>
- 
-        </td>
-     
-        <td>
-<?php
-                // 3eme colonne: Affiche la date de derniere modification
-  if($MyDirectory = opendir('/tmp') or die('Erreur'));{
-    while(false !== ($file = readdir($MyDirectory))) {
-        if (file_exists($file)) {
-echo "" . date ("d M Y, H:i", filemtime($file));
-echo '<br />';
-echo '<br />';       
-        }
-    }
-closedir($MyDirectory);
-  }
 ?>
- 
-        </td>
-    </tr>
-</table>
 <h4> File uploads </h4>
 <form enctype="multipart/form-data" action="upload.php" 
 	method="post">
