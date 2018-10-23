@@ -1,3 +1,5 @@
+<?php
+
 $file = basename($_GET['file']);
 $file = '/data/'.$file;
 
@@ -13,3 +15,5 @@ if(!file_exists($file)){ // file does not exist
     // read the file from disk
     readfile($file);
 }
+
+?>
