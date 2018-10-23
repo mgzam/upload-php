@@ -22,8 +22,8 @@ if ($handle = opendir('/data/')) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry != "." && $entry != "..") {      
                     // 1ere colonne du tableau : Affiche les liens des fichiers contenus dans le dossier "images":
-echo '<tr><td><a href='download.php?file=".$entry."'>".$entry."</a></td>';
-         
+echo "<tr><td><a href='download.php?file=".$entry."'>".$entry."</a></td>\n";
+
         $fichier = '/data/' . $entry . ''; //astuce qui permet de redonner le chemin de chaque fichier donné par readdir()
 if (file_exists($fichier)) {
                     // 2eme colonne : Affiche la taille de chaque fichier:
