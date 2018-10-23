@@ -1,7 +1,16 @@
 <html>
 <head></head>
 <body>
-<h4> File uploads </h4>
+<h1> File Downloads </h1>
+if ($handle = opendir('/data/')) {
+    while (false !== ($entry = readdir($handle))) {
+        if ($entry != "." && $entry != "..") {
+            echo "<a href='download.php?file=".$entry."'>".$entry."</a>\n";
+        }
+    }
+    closedir($handle);
+}
+<h1> File uploads </h1>
 <form enctype="multipart/form-data" action="upload.php" 
 	method="post">
 <p>
